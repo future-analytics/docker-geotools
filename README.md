@@ -3,6 +3,7 @@
 Installs and sets up:
  - Apache Tomcat 7.0.65
  - Geoserver 2.8.0
+ - Geonetwork 3.0.2
 
 To build:
 ```bash
