@@ -9,12 +9,6 @@ RUN locale-gen en_GB en_GB.UTF-8
 ENV JAVA_HOME="/usr/lib/jvm/java-7-openjdk-amd64/jre"
 ENV GEOSERVER_HOME="/opt/geoserver-2.7.2"
 
-## copy scripts
-COPY etc/supervisor/conf.d/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
-COPY etc/init.d/* /etc/init.d/
-RUN chmod a+x /etc/init.d/tomcat \
-    && chmod a+x /etc/init.d/gis
-
 
 ## install apache tomcat
 RUN cd /opt \
@@ -24,8 +18,7 @@ RUN cd /opt \
 ## configure apache tomcat
 COPY opt/apache-tomcat-7.0.65/conf/tomcat-users.xml /opt/apache-tomcat-7.0.65/conf/tomcat-users.xml
 COPY opt/apache-tomcat-7.0.65/webapps/manager/WEB-INF/web.xml /opt/apache-tomcat-7.0.65/webapps/manager/WEB-INF/web.xml
-RUN update-rc.d tomcat defaults \
-    && rm -rf /opt/apache-tomcat-7.0.65.tar.gz
+RUN rm -rf /opt/apache-tomcat-7.0.65.tar.gz
 
 
 ## install geoserver
@@ -44,8 +37,8 @@ RUN mkdir /opt/geonetwork-3.0.2-war \
 
 
 ## setup supervisord
+COPY etc/supervisor/conf.d/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 RUN mkdir -p /var/lock/gis /var/run/gis /var/log/supervisor
 
 ## start services
-RUN update-rc.d gis defaults
 CMD ["/usr/bin/supervisord"]

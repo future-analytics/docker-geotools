@@ -13,7 +13,13 @@ To run:
 ```bash
 docker run -it -p 8005:8080 -d daithi/gis-tools
 ```
-
+It can take a while for tomcat and the gis tools to start up. On one machine I
+have to wait up to .
+5 mins. To check the status of Tomcat, do the following:
+```bash
+docker exec -it $container_hash bash
+$container_hash$# tail -f /opt/apache-tomcat-7.0.65/logs/*.log
+```
 Browse to: http://localhost:8005
 
 #### n.b.
