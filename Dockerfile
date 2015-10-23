@@ -1,5 +1,5 @@
 FROM ubuntu:14.04
-
+MAINTAINER daithi coombes <daithi.coombes@futureanalytics.ie>
 
 ## setup system
 RUN apt-get -y update \
@@ -35,8 +35,17 @@ RUN mkdir /opt/geoserver-2.8.0-war \
     && unzip geoserver-2.8.0-war.zip \
     && cp geoserver.war /opt/apache-tomcat-7.0.65/webapps/
 
-## clean up
-RUN update-rc.d gis defaults
+
+## install geonetwork
+RUN mkdir /opt/geonetwork-3.0.2-war \
+    && cd /opt/geonetwork-3.0.2-war \
+    && wget http://downloads.sourceforge.net/project/geonetwork/GeoNetwork_opensource/v3.0.2/geonetwork.war \
+    && cp geonetwork.war /opt/apache-tomcat-7.0.65/webapps/
+
+
+## setup supervisord
+RUN mkdir -p /var/lock/gis /var/run/gis /var/log/supervisor
 
 ## start services
+RUN update-rc.d gis defaults
 CMD ["/usr/bin/supervisord"]
