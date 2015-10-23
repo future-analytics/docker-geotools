@@ -10,7 +10,7 @@ ENV JAVA_HOME="/usr/lib/jvm/java-7-openjdk-amd64/jre"
 ENV GEOSERVER_HOME="/opt/geoserver-2.7.2"
 
 
-## install apache tomcat 
+## install apache tomcat
 RUN cd /opt \
     && wget http://mirrors.whoishostingthis.com/apache/tomcat/tomcat-7/v7.0.65/bin/apache-tomcat-7.0.65.tar.gz \
     && tar xvfz apache-tomcat-7.0.65.tar.gz

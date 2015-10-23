@@ -1,4 +1,4 @@
-# docker-geotools 
+# docker-geotools
 
 Installs and sets up:
  - Apache Tomcat 7.0.65
