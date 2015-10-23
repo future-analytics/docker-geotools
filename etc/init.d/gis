@@ -1,0 +1,47 @@
+#!/bin/sh
+### BEGIN INIT INFO
+# Provides: GIS Tools
+# Required-Start: $local_fs $remote_fs $network $syslog
+# Required-Stop: $local_fs $remote_fs $network $syslog
+# Default-Start: 2 3 4 5
+# Default-Stop: 0 1 6
+# Short-Description: Start/Stop Geo tools: geoserver, geonetwork, geoportal
+### END INIT INFO
+#
+# /etc/init.d/tomcat
+#
+export JAVA_HOME=/usr/lib/jvm/java-7-openjdk-amd64/jre
+export PATH=$JAVA_HOME/bin:$PATH
+export CATALINA_HOME=/opt/apache-tomcat-7.0.65
+export JAVA_OPTS="-Djava.awt.headless=true"
+
+
+case $1 in
+ start)
+
+ #tomcat
+ sh $CATALINA_HOME/bin/startup.sh
+ ;;
+
+
+ stop)
+
+ #tomcat
+ sh $CATALINA_HOME/bin/shutdown.sh
+ ;;
+
+
+ restart)
+
+ #tomcat
+ sh $CATALINA_HOME/bin/shutdown.sh
+ sh $CATALINA_HOME/bin/startup.sh
+ ;;
+
+
+ *)
+ echo "Usage: /etc/init.d/tomcat {start|stop|restart}"
+ exit 1
+ ;;
+esac
+exit 0
