@@ -1,5 +1,5 @@
 FROM ubuntu:14.04
-MAINTAINER daithi coombes <daithi.coombes@futureanalytics.ie> 
+MAINTAINER daithi coombes <daithi.coombes@futureanalytics.ie>
 
 ## setup system
 RUN apt-get -y update \
