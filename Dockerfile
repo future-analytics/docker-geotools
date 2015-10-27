@@ -6,7 +6,9 @@ RUN apt-get -y update \
     && apt-get -y install default-jre wget unzip supervisor
 RUN locale-gen en_GB en_GB.UTF-8
 
+ENV TERM=xterm
 ENV JAVA_HOME="/usr/lib/jvm/java-7-openjdk-amd64/jre"
+ENV JAVA_OPTS=" -Xmx1024M -XX:MaxPermSize=256M"
 ENV GEOSERVER_HOME="/opt/geoserver-2.7.2"
 
 
